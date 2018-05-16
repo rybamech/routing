@@ -16,22 +16,22 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'contactus', redirectTo: 'contact' },
+  { path: 'contactus', redirectTo: 'contact' }
 
   // authentication demo
-  { path: 'login', component: LoginComponent },
-  {
-    path: 'protected',
-    component: ProtectedComponent,
-    canActivate: [ LoggedInGuard ]
-  },
-
-  // nested
-  {
-    path: 'products',
-    component: ProductsComponent,
-    children: childRoutes
-  }
+  // { path: 'login', component: LoginComponent },
+  // {
+  //   path: 'protected',
+  //   component: ProtectedComponent,
+  //   canActivate: [ LoggedInGuard ]
+  // },
+  //
+  // // nested
+  // {
+  //   path: 'products',
+  //   component: ProductsComponent,
+  //   children: childRoutes
+  // }
 ];
 
 @NgModule({
@@ -45,16 +45,16 @@ const routes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes), // <-- routes
+    RouterModule.forRoot(routes) // <-- routes
 
     // added this for our child module
-    ProductsModule
+    //ProductsModule
   ],
   providers: [
     // uncomment this for "hash-bang" routing
     // { provide: LocationStrategy, useClass: HashLocationStrategy }
-    AUTH_PROVIDERS,
-    LoggedInGuard
+    //AUTH_PROVIDERS,
+    //LoggedInGuard
   ],
   bootstrap: [AppComponent]
 })
