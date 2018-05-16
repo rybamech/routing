@@ -45,9 +45,17 @@ const routes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes), // <-- routes
+
+    // added this for our child module
+    ProductsModule
   ],
-  providers: [],
+  providers: [
+    // uncomment this for "hash-bang" routing
+    // { provide: LocationStrategy, useClass: HashLocationStrategy }
+    AUTH_PROVIDERS,
+    LoggedInGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
