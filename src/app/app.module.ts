@@ -12,6 +12,10 @@ import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { ProtectedComponent } from './protected/protected.component';
 
+import { AUTH_PROVIDERS } from './auth.service';
+import { LoggedInGuard } from './logged-in.guard';
+
+
 const routes: Routes = [
   // basic routes
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -21,12 +25,12 @@ const routes: Routes = [
   { path: 'contactus', redirectTo: 'contact' }
 
   // authentication demo
-  // { path: 'login', component: LoginComponent },
-  // {
-  //   path: 'protected',
-  //   component: ProtectedComponent,
-  //   canActivate: [ LoggedInGuard ]
-  // },
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'protected',
+    component: ProtectedComponent,
+    canActivate: [ LoggedInGuard ]
+  }
   //
   // // nested
   // {
@@ -52,13 +56,13 @@ const routes: Routes = [
     RouterModule.forRoot(routes) // <-- routes
 
     // added this for our child module
-    //ProductsModule
+    // ProductsModule
   ],
   providers: [
     // uncomment this for "hash-bang" routing
     // { provide: LocationStrategy, useClass: HashLocationStrategy }
-    //AUTH_PROVIDERS,
-    //LoggedInGuard
+    AUTH_PROVIDERS,
+    LoggedInGuard
   ],
   bootstrap: [AppComponent]
 })
