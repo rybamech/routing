@@ -2,19 +2,26 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule, Routes } from '@angular/router';
+import {
+  RouterModule,
+  Routes
+} from '@angular/router';
 
+import {
+  routes as childRoutes,
+  ProductsModule
+} from './products/products.module';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { ProtectedComponent } from './protected/protected.component';
+import { ProductsComponent } from './products/products.component';
 
 import { AUTH_PROVIDERS } from './auth.service';
 import { LoggedInGuard } from './logged-in.guard';
-
 
 const routes: Routes = [
   // basic routes
@@ -22,7 +29,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'contactus', redirectTo: 'contact' }
+  { path: 'contactus', redirectTo: 'contact' },
 
   // authentication demo
   { path: 'login', component: LoginComponent },
@@ -30,33 +37,33 @@ const routes: Routes = [
     path: 'protected',
     component: ProtectedComponent,
     canActivate: [ LoggedInGuard ]
+  },
+
+  // nested
+  {
+    path: 'products',
+    component: ProductsComponent,
+    children: childRoutes
   }
-  //
-  // // nested
-  // {
-  //   path: 'products',
-  //   component: ProductsComponent,
-  //   children: childRoutes
-  // }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AboutComponent,
     ContactComponent,
+    AboutComponent,
     LoginComponent,
-    ProtectedComponent
+    ProtectedComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes) // <-- routes
+    RouterModule.forRoot(routes), // <-- routes
 
     // added this for our child module
-    // ProductsModule
+    ProductsModule
   ],
   providers: [
     // uncomment this for "hash-bang" routing
